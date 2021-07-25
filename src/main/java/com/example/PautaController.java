@@ -11,7 +11,11 @@ import java.util.List;
 @RequestMapping({"/pauta"})
 public class PautaController {
 
+    @Autowired
+    private PautaRepository pautaRepository;
+
     //@Autowired
+    /*
     private PautaService pautaService;
 
     @Autowired
@@ -19,10 +23,14 @@ public class PautaController {
         this.pautaService = pautaService;
     }
 
+     */
+
     @GetMapping
     public List<Pauta> getAll() {
-        return pautaService.getAll();
+        //return pautaService.getAll();
+        return pautaRepository.findAll();
     }
+    /*
 
     @GetMapping(path = {"/{id}"})
     public ResponseEntity getById(@PathVariable Integer id) {
@@ -47,5 +55,7 @@ public class PautaController {
         pautaService.excluir(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+     */
 
 }
