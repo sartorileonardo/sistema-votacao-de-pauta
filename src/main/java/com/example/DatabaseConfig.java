@@ -36,7 +36,7 @@ public class DatabaseConfig {
             return new HikariDataSource(config);
         }
     }
-
+/*
     @Bean
     public String db(Map<String, Object> model) {
         try (Connection connection = dataSource.getConnection()) {
@@ -57,4 +57,6 @@ public class DatabaseConfig {
             return "error";
         }
     }
+
+ */
 }
