@@ -3,10 +3,7 @@ package com.example;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -14,6 +11,8 @@ import java.util.List;
 @Entity
 @Table(name = "pauta")
 public class Pauta {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
 

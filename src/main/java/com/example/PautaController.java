@@ -14,6 +14,11 @@ public class PautaController {
     //@Autowired
     private PautaService pautaService;
 
+    @Autowired
+    public PautaController(PautaService pautaService) {
+        this.pautaService = pautaService;
+    }
+
     @GetMapping
     public List<Pauta> getAll() {
         return pautaService.getAll();
