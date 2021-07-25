@@ -34,7 +34,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
 
-@Controller
 @SpringBootApplication
 public class Main {
 
@@ -47,16 +46,13 @@ public class Main {
   public static void main(String[] args) throws Exception {
     SpringApplication.run(Main.class, args);
   }
-
+/*
   @RequestMapping("/")
   String index() {
     return "index";
   }
 
-  @RequestMapping("/hello")
-  String hello() {
-    return "Hello";
-  }
+ */
 
   @RequestMapping("/db")
   String db(Map<String, Object> model) {
