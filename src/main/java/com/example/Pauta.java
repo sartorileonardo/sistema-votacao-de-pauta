@@ -14,4 +14,10 @@ public class Pauta {
 
     public Pauta() {
     }
+
+    public Pauta(Integer id, String nome, List<Voto> votos) {
+        this.id = id;
+        this.nome = nome;
+        this.votos = votos;
+    }
 }
