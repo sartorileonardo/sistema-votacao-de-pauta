@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping({"/pauta"})
 public class PautaController {
 
-    @Autowired
+    //@Autowired
     private PautaService pautaService;
 
     @GetMapping
