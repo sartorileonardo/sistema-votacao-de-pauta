@@ -15,11 +15,6 @@ public class PautaController {
     private PautaService pautaService;
 
     @GetMapping
-    public String hello(){
-        return "Hello";
-    }
-
-    @GetMapping
     public List<Pauta> getAll() {
         return pautaService.getAll();
     }
