@@ -1,5 +1,7 @@
 package com.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -7,24 +9,34 @@ import java.util.List;
 
 public class PautaServiceImpl implements PautaService{
 
+    @Autowired
+    private PautaRepository pautaRepository;
+
     @Override
-    public String inserir(Pauta pauta) {
-        return "Pauta inserida com sucesso";
+    public Pauta inserir(Pauta pauta) {
+        //return "Pauta inserida com sucesso";
+        return pautaRepository.save(pauta);
     }
 
     @Override
-    public String alterar(Pauta pauta, Integer id) {
-        return "Pauta alterada com sucesso";
+    public Pauta alterar(Pauta pauta, Integer id) {
+        Pauta pautaSalva = pautaRepository.getOne(id);
+        Pauta pessoaAlterada = Pauta.builder()
+                .nome(pauta.getNome())
+                .votos(pauta.getVotos())
+                .build();
+        return pautaRepository.save(pessoaAlterada);
     }
 
     @Override
-    public String excluir(Integer id) {
-        return "Pauta removida com sucesso";
+    public void excluir(Integer id) {
+        pautaRepository.deleteById(id);
     }
 
     @Override
     public List<Pauta> getAll() {
 
+        /*
         Pauta p1 = Pauta.builder()
                 .id(1)
                 .nome("Cafe com leite")
@@ -40,11 +52,14 @@ public class PautaServiceImpl implements PautaService{
         List<Pauta> pautas = Arrays.asList(p1, p2);
 
         return pautas;
+
+         */
+        return pautaRepository.findAll();
     }
 
     @Override
     public Pauta get(Integer id) {
-
+/*
         Pauta pauta = Pauta.builder()
                 .id(1)
                 .nome("Trabalhar no feriado de natal")
@@ -52,6 +67,9 @@ public class PautaServiceImpl implements PautaService{
                 .build();
 
         return pauta;
+
+ */
+        return pautaRepository.findById(id).get();
     }
 
     @Override
@@ -60,7 +78,8 @@ public class PautaServiceImpl implements PautaService{
     }
 
     @Override
-    public Integer getVotos(Integer pauta) {
-        return new Date().getSeconds();
+    public Long getVotos(Integer idPauta) {
+        Pauta p = pautaRepository.findById(idPauta).get();
+        return p.getVotos().stream().count();
     }
 }

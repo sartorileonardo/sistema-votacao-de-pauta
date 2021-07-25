@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping({"/pauta"})
 public class PautaController {
 
-    //@Autowired
+    @Autowired
     private PautaService pautaService;
 
     @GetMapping
@@ -27,7 +27,7 @@ public class PautaController {
 
     @PostMapping
     //TODO: alterar retorno para Pauta
-    public String create(@RequestBody Pauta pauta) {
+    public Pauta create(@RequestBody Pauta pauta) {
         return pautaService.inserir(pauta);
     }
 
