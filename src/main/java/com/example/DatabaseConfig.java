@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -26,7 +27,8 @@ public class DatabaseConfig {
     @Autowired
     private DataSource dataSource;
 
-    @Bean
+    @Primary
+    @Bean(name="oneOfManyDataSources")
     public DataSource dataSource() throws SQLException {
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
