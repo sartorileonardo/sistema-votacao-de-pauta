@@ -25,33 +25,15 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Configuration
-@Component
 public class DatabaseConfig {
     @Value("${spring.datasource.url}")
     private String dbUrl;
 
-    private static final Logger logger =
-            LoggerFactory.getLogger(DatabaseConfig.class);
-
-    @Bean()
-//@Primary this annotation to be used if more than one DB Config was used.  In that case,
-// using @Primary would give precedence to a the particular "primary" config class
-    @Profile("heroku")
-    public DataSource dataSource(
-            @Value("${spring.datasource.driverClassName}") final String driverClass,
-            @Value("${spring.datasource.url}") final String jdbcUrl,
-            @Value("${spring.datasource.username}") final String username,
-            @Value("${spring.datasource.password}") final String password
-    ) throws URISyntaxException {
-
-
-        return DataSourceBuilder
-                .create()
-                .username(username)
-                .password(password)
-                .url(dbUrl)
-                .driverClassName(driverClass)
-                .build();
+    @Bean
+    public DataSource dataSource() {
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(dbUrl);
+        return new HikariDataSource(config);
     }
 
 /*
