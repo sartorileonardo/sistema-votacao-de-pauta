@@ -4,6 +4,8 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 @Configuration
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class DatabaseConfig {
     @Value("${spring.datasource.url}")
     private String dbUrl;
