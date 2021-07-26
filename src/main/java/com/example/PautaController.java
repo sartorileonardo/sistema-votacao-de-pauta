@@ -14,17 +14,6 @@ public class PautaController {
     @Autowired
     private PautaRepository pautaRepository;
 
-    //@Autowired
-    /*
-    private PautaService pautaService;
-
-    @Autowired
-    public PautaController(PautaService pautaService) {
-        this.pautaService = pautaService;
-    }
-
-     */
-
     @GetMapping
     public List<Pauta> getAll() {
         //return pautaService.getAll();
@@ -34,7 +23,9 @@ public class PautaController {
 
     @GetMapping(path = {"/{id}"})
     public ResponseEntity getById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(pautaRepository.getOne(id));
+        return pautaRepository.findById(id)
+                .map(pauta -> ResponseEntity.ok().body(pauta))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 
@@ -47,10 +38,15 @@ public class PautaController {
     @PutMapping(value = "/{id}")
     public ResponseEntity alterar(@PathVariable("id") Integer id,
                                  @RequestBody Pauta pauta) {
-        Pauta pautaSalva = pautaRepository.getOne(id);
-        pautaSalva.setNome(pauta.getNome());
-        pautaSalva.setVotos(pauta.getVotos());
-        return ResponseEntity.ok().body(pautaRepository.save(pautaSalva));
+        return pautaRepository.findById(id)
+                .map(p -> {
+                    p.setNome(pauta.getNome());
+                    p.setVotos(pauta.getVotos());
+                    
+                    Pauta pautaAtualizada = pautaRepository.save(p);
+
+                    return ResponseEntity.ok().body(pautaAtualizada);
+                }).orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping(path = "/{id}")
