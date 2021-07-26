@@ -30,7 +30,7 @@ public class PautaController {
         //return pautaService.getAll();
         return pautaRepository.findAll();
     }
-    /*
+    
 
     @GetMapping(path = {"/{id}"})
     public ResponseEntity getById(@PathVariable Integer id) {
@@ -56,6 +56,6 @@ public class PautaController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-     */
+     
 
 }
