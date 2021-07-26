@@ -12,7 +12,8 @@ import java.util.List;
 public class PautaController {
 
     @Autowired
-    private PautaService pautaService;
+    private PautaRepository pautaRepository;
+
     //@Autowired
     /*
     private PautaService pautaService;
@@ -26,34 +27,38 @@ public class PautaController {
 
     @GetMapping
     public List<Pauta> getAll() {
-        return pautaService.getAll();
+        //return pautaService.getAll();
+        return pautaRepository.findAll();
     }
     
 
     @GetMapping(path = {"/{id}"})
     public ResponseEntity getById(@PathVariable Integer id) {
-        return ResponseEntity.ok().body(pautaService.get(id));
+        return ResponseEntity.ok().body(pautaRepository.getOne(id));
     }
 
 
     @PostMapping
     //TODO: alterar retorno para Pauta
     public Pauta create(@RequestBody Pauta pauta) {
-        return pautaService.inserir(pauta);
+        return pautaRepository.save(pauta);
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity alterar(@PathVariable("id") Integer id,
                                  @RequestBody Pauta pauta) {
-        return ResponseEntity.ok().body(pautaService.alterar(pauta, id));
+        Pauta pautaSalva = pautaRepository.getOne(id);
+        pautaSalva.setNome(pauta.getNome());
+        pautaSalva.setVotos(pauta.getVotos());
+        return ResponseEntity.ok().body(pautaRepository.save(pautaSalva));
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
-        pautaService.excluir(id);
+        pautaRepository.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-     
+    
 
 }
