@@ -14,18 +14,17 @@ public class PautaServiceImpl implements PautaService{
 
     @Override
     public Pauta inserir(Pauta pauta) {
-        //return "Pauta inserida com sucesso";
         return pautaRepository.save(pauta);
     }
 
     @Override
     public Pauta alterar(Pauta pauta, Integer id) {
         Pauta pautaSalva = pautaRepository.getOne(id);
-        Pauta pessoaAlterada = Pauta.builder()
+        Pauta pautaAlterada = Pauta.builder()
                 .nome(pauta.getNome())
                 .votos(pauta.getVotos())
                 .build();
-        return pautaRepository.save(pessoaAlterada);
+        return pautaRepository.save(pautaAlterada);
     }
 
     @Override

@@ -12,8 +12,7 @@ import java.util.List;
 public class PautaController {
 
     @Autowired
-    private PautaRepository pautaRepository;
-
+    private PautaService pautaService;
     //@Autowired
     /*
     private PautaService pautaService;
@@ -27,8 +26,7 @@ public class PautaController {
 
     @GetMapping
     public List<Pauta> getAll() {
-        //return pautaService.getAll();
-        return pautaRepository.findAll();
+        return pautaService.getAll();
     }
     
 
