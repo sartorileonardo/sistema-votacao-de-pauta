@@ -33,6 +33,13 @@ public class PautaController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping(path = {"/{id}/votos"})
+    public ResponseEntity getVotosByPauta(@PathVariable Integer id) {
+        return pautaRepository.findById(id)
+                .map(pauta -> ResponseEntity.ok().body(pauta.getVotos().stream().count()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
     @CacheEvict(value = "pautas", allEntries = true)
     @PostMapping
