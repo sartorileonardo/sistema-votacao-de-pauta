@@ -54,10 +54,10 @@ public class PautaController {
 
     @CacheEvict(value = "pautas", allEntries = true)
     @PutMapping(value = "/{id}/voto")
-    public Pauta votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
+    public List<Voto> votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
         Pauta pauta = pautaRepository.findById(id).get();
-        pauta.getVotos().stream().forEach(v -> votoRepository.save(voto));
-        return pautaRepository.save(pauta);
+        pauta.getVotos().add(voto);
+        return pauta.getVotos();
     }
 
     @CacheEvict(value = "pautas", allEntries = true)
