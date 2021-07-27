@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.Pauta;
+import com.example.entity.Voto;
 import com.example.repository.PautaRepository;
 import com.example.repository.VotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,14 @@ public class PautaController {
     @PostMapping
     public Pauta create(@RequestBody Pauta pauta) {
         pauta.getVotos().stream().forEach(v -> votoRepository.save(v));
+        return pautaRepository.save(pauta);
+    }
+
+    @CacheEvict(value = "pautas", allEntries = true)
+    @PutMapping(value = "/{id}/voto")
+    public Pauta votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
+        Pauta pauta = pautaRepository.findById(id).get();
+        pauta.getVotos().stream().forEach(v -> votoRepository.save(voto));
         return pautaRepository.save(pauta);
     }
 
