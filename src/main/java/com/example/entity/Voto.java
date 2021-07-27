@@ -24,4 +24,20 @@ public class Voto implements Serializable {
 
     public Voto() {
     }
+
+    public Integer getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(Integer cpf) {
+        this.cpf = cpf;
+    }
+
+    public MensagemVoto getMensagemVoto() {
+        return mensagemVoto;
+    }
+
+    public void setMensagemVoto(MensagemVoto mensagemVoto) {
+        this.mensagemVoto = mensagemVoto;
+    }
 }

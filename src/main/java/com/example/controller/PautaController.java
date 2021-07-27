@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -54,10 +55,19 @@ public class PautaController {
 
     @CacheEvict(value = "pautas", allEntries = true)
     @PutMapping(value = "/{id}/voto")
-    public List<Voto> votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
-        Pauta pauta = pautaRepository.findById(id).get();
-        pauta.getVotos().add(voto);
-        return pauta.getVotos();
+    public ResponseEntity votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
+        return pautaRepository.findById(id)
+                .map(p -> {
+                    //p.setNome(pauta.getNome());
+                    List<Voto> novaListaVotos = p.getVotos();
+                    novaListaVotos.add(voto);
+
+                    p.setVotos(novaListaVotos);
+
+                    Pauta pautaAtualizada = pautaRepository.save(p);
+
+                    return ResponseEntity.ok().body(pautaAtualizada);
+                }).orElse(ResponseEntity.notFound().build());
     }
 
     @CacheEvict(value = "pautas", allEntries = true)
