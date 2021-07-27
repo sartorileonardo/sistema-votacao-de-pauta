@@ -1,5 +1,8 @@
-package com.example;
+package com.example.controller;
 
+import com.example.entity.Pauta;
+import com.example.repository.PautaRepository;
+import com.example.repository.VotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
