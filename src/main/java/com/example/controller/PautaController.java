@@ -54,7 +54,7 @@ public class PautaController {
     }
 
     @CacheEvict(value = "pautas", allEntries = true)
-    @PutMapping(value = "/{id}/voto")
+    @PutMapping(value = "/{id}/votar")
     public ResponseEntity votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
         Pauta pautaSalva= pautaRepository.findById(id).get();
         List<Voto> novaListaDeVotos = pautaSalva.getVotos();
