@@ -16,6 +16,9 @@ public class PautaController {
     @Autowired
     private PautaRepository pautaRepository;
 
+    @Autowired
+    private VotoRepository votoRepository;
+
     @Cacheable(value = "pautas")
     @GetMapping
     public List<Pauta> getAll() {
@@ -34,6 +37,7 @@ public class PautaController {
     @CacheEvict(value = "pautas", allEntries = true)
     @PostMapping
     public Pauta create(@RequestBody Pauta pauta) {
+        pauta.getVotos().stream().forEach(v -> votoRepository.save(v));
         return pautaRepository.save(pauta);
     }
 
