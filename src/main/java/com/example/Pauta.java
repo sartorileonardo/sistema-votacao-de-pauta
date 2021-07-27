@@ -17,8 +17,7 @@ public class Pauta implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
-
-    @ElementCollection(fetch = FetchType.EAGER)
+    @OneToMany(targetEntity = Voto.class)
     private List<Voto> votos;
 
     public Pauta() {
