@@ -12,12 +12,12 @@ import java.io.Serializable;
 @Table(name = "voto")
 public class Voto implements Serializable {
     @Id
-    private String cpf;
+    private Integer cpf;
 
     @Enumerated(EnumType.STRING)
     private MensagemVoto mensagemVoto;
 
-    public Voto(String cpf, MensagemVoto mensagemVoto) {
+    public Voto(Integer cpf, MensagemVoto mensagemVoto) {
         this.cpf = cpf;
         this.mensagemVoto = mensagemVoto;
     }
