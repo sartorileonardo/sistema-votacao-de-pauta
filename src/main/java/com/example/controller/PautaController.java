@@ -56,18 +56,29 @@ public class PautaController {
     @CacheEvict(value = "pautas", allEntries = true)
     @PutMapping(value = "/{id}/voto")
     public ResponseEntity votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
+        Pauta pautaSalva= pautaRepository.findById(id).get();
+        List<Voto> novaListaDeVotos = pautaSalva.getVotos();
+        novaListaDeVotos.add(voto);
+        Pauta novaPauta = new Pauta(pautaSalva.getId(), pautaSalva.getNome(), novaListaDeVotos);
+        pautaRepository.save(novaPauta);
+
+        return ResponseEntity.ok().body(novaPauta);
+        /*
         return pautaRepository.findById(id)
                 .map(p -> {
                     //p.setNome(pauta.getNome());
                     List<Voto> novaListaVotos = p.getVotos();
                     novaListaVotos.add(voto);
 
+                    p.setNome(p.getNome());
                     p.setVotos(novaListaVotos);
 
                     Pauta pautaAtualizada = pautaRepository.save(p);
 
                     return ResponseEntity.ok().body(pautaAtualizada);
                 }).orElse(ResponseEntity.notFound().build());
+
+         */
     }
 
     @CacheEvict(value = "pautas", allEntries = true)
