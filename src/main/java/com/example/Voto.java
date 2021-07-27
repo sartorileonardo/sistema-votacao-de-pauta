@@ -6,13 +6,13 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Data
+//@Data
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "voto")
 public class Voto implements Serializable {
     //@Id
-    @Column(unique = true, nullable = false, insertable = true, updatable = false, length = 11)
+    @Column(unique = true, nullable = false, insertable = true, updatable = false)
     private String cpf;
 
     @Enumerated(EnumType.STRING)
@@ -24,5 +24,21 @@ public class Voto implements Serializable {
     }
 
     public Voto() {
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public MensagemVoto getMensagemVoto() {
+        return mensagemVoto;
+    }
+
+    public void setMensagemVoto(MensagemVoto mensagemVoto) {
+        this.mensagemVoto = mensagemVoto;
     }
 }
