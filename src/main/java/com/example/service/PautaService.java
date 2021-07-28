@@ -86,7 +86,7 @@ public class PautaService {
         voto.setSessaoVotacao(sessaoVotacao);
         voto.setDataHora(LocalDateTime.now());
 
-        if(votoRepository.existsBySessaoVotacaoAndIdEleitor(sessaoVotacao, voto.getCpf())) {
+        if(votoRepository.existsBySessaoVotacaoAndCpfEleitor(sessaoVotacao, voto.getCpfEleitor())) {
             throw new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.VOTO_JA_REGISTRADO, HttpStatus.BAD_REQUEST);
         }
 

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VotoRepository extends JpaRepository<Voto, String> {
-    Boolean existsBySessaoVotacaoAndIdEleitor(SessaoVotacao sessaoVotacao, String cpfEleitor);
+    Boolean existsBySessaoVotacaoAndCpfEleitor(SessaoVotacao sessaoVotacao, String cpfEleitor);
 }

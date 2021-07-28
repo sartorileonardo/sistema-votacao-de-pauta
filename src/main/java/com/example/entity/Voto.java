@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "voto")
 public class Voto {
     @Id
-    private String cpf;
+    private String cpfEleitor;
 
     @Column(name = "mensagem_voto")
     @Enumerated(EnumType.STRING)
