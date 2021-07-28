@@ -1,11 +1,8 @@
 package com.example.controller;
 
-import com.example.entity.SessaoVotacao;
-import com.example.exception.RegraDeNegocioException;
-import com.example.exception.TipoMensagemRegraDeNegocioException;
-import com.example.service.PautaService;
 import com.example.entity.Pauta;
-import com.example.entity.Voto;
+import com.example.entity.SessaoVotacao;
+import com.example.service.PautaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping({"/pauta"})
+@RequestMapping({"/v1/pauta"})
 public class PautaController {
 
     private static final Logger logger = LoggerFactory.getLogger(PautaController.class);
