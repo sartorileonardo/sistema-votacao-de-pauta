@@ -24,4 +24,15 @@ public class Voto {
     @ManyToOne
     @JoinColumn(name = "id_sessao_votacao")
     private SessaoVotacao sessaoVotacao;
+
+
+    public Voto() {
+    }
+
+    public Voto(String cpfEleitor, MensagemVoto mensagemVoto, LocalDateTime dataHora, SessaoVotacao sessaoVotacao) {
+        this.cpfEleitor = cpfEleitor;
+        this.mensagemVoto = mensagemVoto;
+        this.dataHora = dataHora;
+        this.sessaoVotacao = sessaoVotacao;
+    }
 }

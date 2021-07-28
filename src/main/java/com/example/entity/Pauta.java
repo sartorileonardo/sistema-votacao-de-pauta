@@ -28,4 +28,12 @@ public class Pauta {
     @OneToMany(targetEntity = Voto.class)
     private List<Voto> votos;
 
+    public Pauta(Integer id, String nome, List<Voto> votos) {
+        this.id = id;
+        this.nome = nome;
+        this.votos = votos;
+    }
+
+    public Pauta() {
+    }
 }

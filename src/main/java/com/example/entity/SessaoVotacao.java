@@ -35,4 +35,13 @@ public class SessaoVotacao {
     @JoinColumn(name = "id_pauta")
     private Pauta pauta;
 
+    public SessaoVotacao() {
+    }
+
+    public SessaoVotacao(Integer id, LocalDateTime dataAbertura, LocalDateTime dataFechamento, Pauta pauta) {
+        this.id = id;
+        this.dataAbertura = dataAbertura;
+        this.dataFechamento = dataFechamento;
+        this.pauta = pauta;
+    }
 }
