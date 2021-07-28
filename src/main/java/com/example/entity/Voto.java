@@ -4,13 +4,14 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "voto")
-public class Voto {
+public class Voto implements Serializable {
     @Id
     private String cpfEleitor;
 

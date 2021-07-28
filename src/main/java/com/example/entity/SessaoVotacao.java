@@ -4,18 +4,17 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @ToString(exclude = {"pauta"})
 @Table(name = "sessao_votacao")
-public class SessaoVotacao {
+public class SessaoVotacao implements Serializable {
 
     @ApiModelProperty(value = "Identificador unico da sessao")
     @Id

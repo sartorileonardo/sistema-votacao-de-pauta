@@ -11,11 +11,9 @@ import java.util.List;
 @Data
 @Entity
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @EqualsAndHashCode
 @Table(name = "pautas")
-public class Pauta {
+public class Pauta implements Serializable{
     @ApiModelProperty(value = "Identificador unico da pauta")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
