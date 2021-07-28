@@ -16,6 +16,10 @@ import java.util.List;
 @Table(name = "sessao_votacao")
 public class SessaoVotacao {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Column(name = "data_abertura")
     private LocalDateTime dataAbertura;
 

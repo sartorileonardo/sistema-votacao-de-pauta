@@ -3,6 +3,8 @@ package com.example.controller;
 import com.example.entity.Pauta;
 import com.example.entity.SessaoVotacao;
 import com.example.service.PautaService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Api(value = "Pauta")
 @RestController
 @RequestMapping({"/v1/pauta"})
 public class PautaController {
@@ -23,6 +26,7 @@ public class PautaController {
     @Autowired
     private PautaService pautaService;
 
+    @ApiOperation(value = "Lista todas as pautas cadastradas")
     @Cacheable(value = "pautas")
     @GetMapping
     public List<Pauta> getAll() {
@@ -31,6 +35,7 @@ public class PautaController {
     }
 
 
+    @ApiOperation(value = "Lista uma pauta cadastrada atraves do seu identificador(ID)")
     @GetMapping(path = {"/{idPauta}"})
     public ResponseEntity getById(@PathVariable Integer idPauta) {
         logger.info("Consultando pauta id {}.", idPauta);
@@ -40,6 +45,7 @@ public class PautaController {
     }
 
 
+    @ApiOperation(value = "Adiciona uma nova pauta")
     @CacheEvict(value = "pautas", allEntries = true)
     @PostMapping
     public ResponseEntity<Pauta> create(@RequestBody Pauta pauta) {
@@ -51,6 +57,7 @@ public class PautaController {
                 .build();
     }
 
+    @ApiOperation(value = "Inicia a votação da sessão")
     @PostMapping("/{idPauta}/iniciar-sessao-votacao")
     public ResponseEntity iniciarSessaoVotacao(@PathVariable("idPauta") Integer idPauta,
                                                @RequestBody SessaoVotacao sessaoVotacao) {
@@ -61,6 +68,7 @@ public class PautaController {
         return ResponseEntity.ok().build();
     }
 
+    @ApiOperation(value = "Remove uma pauta cadastrada atraves do seu identificador(ID)")
     @CacheEvict(value = "pautas", allEntries = true)
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
