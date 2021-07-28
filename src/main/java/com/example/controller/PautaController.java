@@ -1,9 +1,13 @@
 package com.example.controller;
 
+import com.example.entity.SessaoVotacao;
+import com.example.exception.RegraDeNegocioException;
+import com.example.exception.TipoMensagemRegraDeNegocioException;
+import com.example.service.PautaService;
 import com.example.entity.Pauta;
 import com.example.entity.Voto;
-import com.example.repository.PautaRepository;
-import com.example.repository.VotoRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -11,96 +15,62 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping({"/pauta"})
 public class PautaController {
 
-    @Autowired
-    private PautaRepository pautaRepository;
+    private static final Logger logger = LoggerFactory.getLogger(PautaController.class);
 
     @Autowired
-    private VotoRepository votoRepository;
+    private PautaService pautaService;
 
     @Cacheable(value = "pautas")
     @GetMapping
     public List<Pauta> getAll() {
-        return pautaRepository.findAll();
+        logger.info("Consultando todas as pautas...");
+        return pautaService.getPautas();
     }
 
 
-    @GetMapping(path = {"/{id}"})
-    public ResponseEntity getById(@PathVariable Integer id) {
-        return pautaRepository.findById(id)
-                .map(pauta -> ResponseEntity.ok().body(pauta))
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @GetMapping(path = {"/{id}/votos"})
-    public ResponseEntity getVotosByPauta(@PathVariable Integer id) {
-        return pautaRepository.findById(id)
-                .map(pauta -> ResponseEntity.ok().body(pauta.getVotos().stream().count()))
+    @GetMapping(path = {"/{idPauta}"})
+    public ResponseEntity getById(@PathVariable Integer idPauta) {
+        logger.info("Consultando pauta id {}.", idPauta);
+        return pautaService.getPauta(idPauta)
+                .map(record -> ResponseEntity.ok().body(record))
                 .orElse(ResponseEntity.notFound().build());
     }
 
 
     @CacheEvict(value = "pautas", allEntries = true)
     @PostMapping
-    public Pauta create(@RequestBody Pauta pauta) {
-        pauta.getVotos().stream().forEach(v -> votoRepository.save(v));
-        return pautaRepository.save(pauta);
+    public ResponseEntity<Pauta> create(@RequestBody Pauta pauta) {
+        logger.info("Criando pauta...");
+        Pauta p = pautaService.addPauta(pauta);
+        logger.info("Pauta criada com sucesso.");
+        return ResponseEntity.ok(p)
+                .status(HttpStatus.CREATED)
+                .build();
     }
 
-    @CacheEvict(value = "pautas", allEntries = true)
-    @PostMapping(value = "/{id}/votar")
-    public ResponseEntity votar(@PathVariable("id") Integer id, @RequestBody Voto voto) {
+    @PostMapping("/{idPauta}/iniciar-sessao-votacao")
+    public ResponseEntity iniciarSessaoVotacao(@PathVariable("idPauta") Integer idPauta,
+                                               @RequestBody SessaoVotacao sessaoVotacao) {
+        logger.info("Pauta aberta.", idPauta);
+        pautaService.iniciarSessaoVotacao(idPauta, sessaoVotacao.getDataFechamento());
+        logger.info("A votação foi iniciada e termina em ".concat(pautaService.getTempoSessaoPadrao().toString()).concat(" segundos."));
 
-        Pauta pautaSalva= pautaRepository.findById(id).get();
-        List<Voto> novaListaDeVotos = pautaSalva.getVotos();
-        novaListaDeVotos.add(voto);
-        Pauta novaPauta = new Pauta(pautaSalva.getId(), pautaSalva.getNome(), novaListaDeVotos);
-        pautaRepository.save(novaPauta);
-
-        return ResponseEntity.ok().body(novaPauta);
-        /*
-        return pautaRepository.findById(id)
-                .map(p -> {
-                    //p.setNome(pauta.getNome());
-                    List<Voto> novaListaVotos = p.getVotos();
-                    novaListaVotos.add(voto);
-
-                    p.setNome(p.getNome());
-                    p.setVotos(novaListaVotos);
-
-                    Pauta pautaAtualizada = pautaRepository.save(p);
-
-                    return ResponseEntity.ok().body(pautaAtualizada);
-                }).orElse(ResponseEntity.notFound().build());
-
-         */
-    }
-
-    @CacheEvict(value = "pautas", allEntries = true)
-    @PutMapping(value = "/{id}")
-    public ResponseEntity alterar(@PathVariable("id") Integer id,
-                                 @RequestBody Pauta pauta) {
-        return pautaRepository.findById(id)
-                .map(p -> {
-                    p.setNome(pauta.getNome());
-                    p.setVotos(pauta.getVotos());
-                    
-                    Pauta pautaAtualizada = pautaRepository.save(p);
-
-                    return ResponseEntity.ok().body(pautaAtualizada);
-                }).orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok().build();
     }
 
     @CacheEvict(value = "pautas", allEntries = true)
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Integer id){
-        pautaRepository.deleteById(id);
+        logger.info("Removendo pauta...");
+        pautaService.delete(id);
+        logger.info("Pauta removida com sucesso.");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

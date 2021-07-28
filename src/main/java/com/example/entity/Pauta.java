@@ -1,7 +1,6 @@
 package com.example.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -9,10 +8,13 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@Builder(toBuilder = true)
 @Entity
-@Table(name = "pauta")
-public class Pauta implements Serializable{
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+@Table(name = "pautas")
+public class Pauta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,32 +22,4 @@ public class Pauta implements Serializable{
     @OneToMany(targetEntity = Voto.class)
     private List<Voto> votos;
 
-    public Pauta() {
-    }
-
-    public Pauta(Integer id, String nome, List<Voto> votos) {
-        this.id = id;
-        this.nome = nome;
-        this.votos = votos;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public List<Voto> getVotos() {
-        return votos;
-    }
-
-    public void setVotos(List<Voto> votos) {
-        this.votos = votos;
-    }
 }

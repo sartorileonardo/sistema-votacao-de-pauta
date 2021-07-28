@@ -4,40 +4,24 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Builder(toBuilder = true)
 @Entity
 @Table(name = "voto")
-public class Voto implements Serializable {
+public class Voto {
     @Id
-    private Integer cpf;
+    private String cpf;
 
+    @Column(name = "mensagem_voto")
     @Enumerated(EnumType.STRING)
     private MensagemVoto mensagemVoto;
 
-    public Voto(Integer cpf, MensagemVoto mensagemVoto) {
-        this.cpf = cpf;
-        this.mensagemVoto = mensagemVoto;
-    }
+    @Column(name = "data")
+    private LocalDateTime dataHora;
 
-    public Voto() {
-    }
-
-    public Integer getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(Integer cpf) {
-        this.cpf = cpf;
-    }
-
-    public MensagemVoto getMensagemVoto() {
-        return mensagemVoto;
-    }
-
-    public void setMensagemVoto(MensagemVoto mensagemVoto) {
-        this.mensagemVoto = mensagemVoto;
-    }
+    @ManyToOne
+    @JoinColumn(name = "id_sessao_votacao")
+    private SessaoVotacao sessaoVotacao;
 }
