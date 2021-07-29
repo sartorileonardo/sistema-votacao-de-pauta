@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/v1/pautas")
+@RequestMapping("/v1/pauta")
 @RequiredArgsConstructor
 public class PautaController {
 
