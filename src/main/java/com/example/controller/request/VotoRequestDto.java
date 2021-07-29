@@ -19,5 +19,5 @@ public class VotoRequestDto {
 
     @ApiModelProperty(value = "Mensagem de voto do eleitor", example = "SIM")
     @NotNull(message = "Mensagem de voto é obrigatório e precisa seguir o padrão: SIM/NAO")
-    private MensagemVoto opcaoVoto;
+    private MensagemVoto mensagemVoto;
 }

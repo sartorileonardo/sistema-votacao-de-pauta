@@ -16,11 +16,9 @@ import java.util.List;
 @Entity
 @Table(name = "pauta")
 public class Pauta implements Serializable{
-    @ApiModelProperty(value = "Identificador unico da pauta, gerado automaticamente")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ApiModelProperty(value = "Nome da pauta")
     private String nome;
 }
