@@ -8,7 +8,7 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode
 @ToString
-public class VotoRequest {
+public class VotoDto {
 
     //@NotNull(message = "informe o eleitor que irá votar.")
     private String cpfEleitor;

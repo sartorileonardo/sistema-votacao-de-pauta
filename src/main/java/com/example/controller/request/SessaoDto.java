@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode
-public class SessaoRequest {
+public class SessaoDto {
 
     @ApiModelProperty(example = "2019-01-08T22:34:22.337Z")
     private LocalDateTime dataFechamento;

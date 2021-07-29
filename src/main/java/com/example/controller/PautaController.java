@@ -1,9 +1,8 @@
 package com.example.controller;
 
-import com.example.controller.request.PautaRequest;
-import com.example.controller.request.SessaoRequest;
-import com.example.controller.request.VotoRequest;
-import com.example.controller.response.PautaResponse;
+import com.example.controller.request.SessaoDto;
+import com.example.controller.request.VotoDto;
+import com.example.controller.response.PautaDto;
 import com.example.entity.Pauta;
 import com.example.entity.Voto;
 import com.example.exception.RegraDeNegocioException;
@@ -31,7 +30,7 @@ public class PautaController {
     private final ObjectMapper objectMapper;
 
     @PostMapping
-    public ResponseEntity<PautaResponse> criarPauta(@RequestBody PautaRequest pautaRequest) {
+    public ResponseEntity<PautaDto> criarPauta(@RequestBody com.example.controller.request.PautaDto pautaRequest) {
         logger.info("Chamada para criar pauta: {}.", pautaRequest);
 
         Pauta pauta = objectMapper.convertValue(pautaRequest, Pauta.class);
@@ -40,13 +39,13 @@ public class PautaController {
 
         logger.info("Pauta criada com sucesso.");
 
-        return ResponseEntity.ok(objectMapper.convertValue(pauta, PautaResponse.class))
+        return ResponseEntity.ok(objectMapper.convertValue(pauta, PautaDto.class))
                 .status(HttpStatus.CREATED)
                 .build();
     }
 
     @GetMapping
-    public List<PautaResponse> getPautas() {
+    public List<PautaDto> getPautas() {
         logger.info("Retornando pautas.");
         return pautaService.getPautas().stream()
                 .map(this::getPautaResponse)
@@ -54,15 +53,15 @@ public class PautaController {
     }
 
     @GetMapping("/{idPauta}")
-    public PautaResponse getPauta(@PathVariable("idPauta")
+    public PautaDto getPauta(@PathVariable("idPauta")
                                           Integer idPauta) {
         logger.info("Buscando pauta id {}.", idPauta);
 
         return getPautaResponse(pautaService.getPauta(idPauta).orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)));
     }
 
-    private PautaResponse getPautaResponse(Pauta pauta) {
-        PautaResponse pautaResponse = objectMapper.convertValue(pauta, PautaResponse.class);
+    private PautaDto getPautaResponse(Pauta pauta) {
+        PautaDto pautaResponse = objectMapper.convertValue(pauta, PautaDto.class);
         pautaResponse.setResultado(pautaService.result(pauta));
 
         return pautaResponse;
@@ -70,7 +69,7 @@ public class PautaController {
 
     @PostMapping("/{idPauta}/iniciar-sessao-votacao")
     public ResponseEntity iniciarSessaoVotacao(@PathVariable("idPauta") Integer idPauta,
-                                               @RequestBody SessaoRequest abrirSessaoRequest) {
+                                               @RequestBody SessaoDto abrirSessaoRequest) {
         logger.info("Pauta {} abertura de sessão.", idPauta);
 
         pautaService.iniciarSessaoVotacao(idPauta, abrirSessaoRequest != null ? abrirSessaoRequest.getDataFechamento() : null);
@@ -82,7 +81,7 @@ public class PautaController {
 
     @PostMapping("/{idPauta}/votar")
     public ResponseEntity votar(@PathVariable("idPauta") Integer idPauta,
-                                @RequestBody VotoRequest votoRequest) {
+                                @RequestBody VotoDto votoRequest) {
         logger.info("Pauta {} adicionando voto {}.", idPauta, votoRequest);
 
         pautaService.votar(idPauta, objectMapper.convertValue(votoRequest, Voto.class));

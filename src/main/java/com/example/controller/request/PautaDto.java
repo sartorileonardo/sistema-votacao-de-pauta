@@ -7,7 +7,7 @@ import lombok.ToString;
 @Data
 @EqualsAndHashCode
 @ToString
-public class PautaRequest {
+public class PautaDto {
     //@NotBlank(message = "Descrição não pode ser vázio.")
     private String nome;
 }
