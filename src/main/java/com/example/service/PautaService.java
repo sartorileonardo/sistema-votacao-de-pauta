@@ -97,12 +97,10 @@ public class PautaService {
     }
 
     public Map<String, Long> resultado(Pauta pauta) {
-        //Pauta p = pautaRepository.findById(pauta.getId()).get();
-        SessaoVotacao s = sessaoRepository.findByPauta(pauta).get();
 
         Map<String, Long> result = new HashMap<>();
-        result.put("SIM", s.getVotos().stream().filter(v -> v.toString().equalsIgnoreCase("SIM")).count());
-        result.put("NAO", s.getVotos().stream().filter(v -> v.toString().equalsIgnoreCase("NAO")).count());
+        result.put("SIM", getSessaoVotacao(pauta).filter(v -> v.toString().equalsIgnoreCase("SIM")).count());
+        result.put("NAO", getSessaoVotacao(pauta).filter(v -> v.toString().equalsIgnoreCase("NAO")).count());
 
         return result;
         /*
