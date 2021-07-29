@@ -9,7 +9,7 @@ end
 ```
 <!--
   rundoc src:
-  https://github.com/heroku/java-getting-started/blob/main/deploying-spring-boot-apps.md
+  https://github.com/heroku/sistema-votacao-de-pauta/blob/main/deploying-spring-boot-apps.md
 
   Command:
   $ rundoc build --path deploying-spring-boot-apps.md
@@ -44,7 +44,7 @@ keys, see [Managing Your SSH Keys](https://devcenter.heroku.com/articles/keys).
 To create a new Spring Boot application, first install the Spring Boot CLI as described in the [Spring Boot documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/cli-using-the-cli.html). This will add a `spring` command to your path.
 
 >note
->You can also start with a working [sample app](https://github.com/heroku/java-getting-started) if you'd prefer.
+>You can also start with a working [sample app](https://github.com/heroku/sistema-votacao-de-pauta) if you'd prefer.
 
 Use the CLI to create a new application by running this command:
 

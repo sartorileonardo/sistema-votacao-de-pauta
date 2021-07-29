@@ -1,4 +1,4 @@
-# java-getting-started
+# sistema-votacao-de-pauta
 
 A barebones Java app, which can easily be deployed to Heroku.
 
@@ -11,8 +11,8 @@ This application supports the [Getting Started with Java on Heroku](https://devc
 Make sure you have Java and Maven installed.  Also, install the [Heroku CLI](https://cli.heroku.com/).
 
 ```sh
-$ git clone https://github.com/heroku/java-getting-started.git
-$ cd java-getting-started
+$ git clone https://github.com/heroku/sistema-votacao-de-pauta.git
+$ cd sistema-votacao-de-pauta
 $ mvn install
 $ heroku local:start
 ```
