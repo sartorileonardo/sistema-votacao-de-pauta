@@ -12,10 +12,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Cacheable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,6 +68,7 @@ public class PautaController {
 
         return pautaResponse;
     }
+
 
     @PostMapping("/{idPauta}/iniciar-sessao-votacao")
     public ResponseEntity iniciarSessaoVotacao(@PathVariable("idPauta") Integer idPauta,
