@@ -96,10 +96,13 @@ public class PautaService {
         votoRepository.save(voto);
     }
 
-    public Map<String, Integer> resultado(Pauta pauta) {
-        Map<String, Integer> result = new HashMap<>();
-        result.put("SIM", 2);
-        result.put("NAO", 1);
+    public Map<String, Long> resultado(Pauta pauta) {
+        //Pauta p = pautaRepository.findById(pauta.getId()).get();
+        SessaoVotacao s = sessaoRepository.findByPauta(pauta).get();
+
+        Map<String, Long> result = new HashMap<>();
+        result.put("SIM", s.getVotos().stream().filter(v -> v.toString().equalsIgnoreCase("SIM")).count());
+        result.put("NAO", s.getVotos().stream().filter(v -> v.toString().equalsIgnoreCase("NAO")).count());
 
         return result;
         /*
