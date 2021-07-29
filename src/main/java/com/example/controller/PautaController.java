@@ -64,7 +64,7 @@ public class PautaController {
 
     private PautaDto getPautaResponse(Pauta pauta) {
         PautaDto pautaResponse = objectMapper.convertValue(pauta, PautaDto.class);
-        pautaResponse.setResultado(pautaService.result(pauta));
+        pautaResponse.setResultado(pautaService.resultado(pauta));
 
         return pautaResponse;
     }

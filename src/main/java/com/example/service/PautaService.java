@@ -99,7 +99,7 @@ public class PautaService {
         votoRepository.save(voto);
     }
 
-    public Map<MensagemVoto, Long> result(Pauta pauta) {
+    public Map<MensagemVoto, Long> resultado(Pauta pauta) {
         return getSessaoVotacao(pauta).map(sv -> sv.getVotos()
                 .stream()
                 .collect(Collectors.groupingBy(Voto::getMensagemVoto,
