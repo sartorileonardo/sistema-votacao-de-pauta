@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entity.MensagemVoto;
 import com.example.entity.Pauta;
 import com.example.entity.SessaoVotacao;
 import com.example.entity.Voto;
@@ -16,8 +17,10 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -93,8 +96,11 @@ public class PautaService {
         votoRepository.save(voto);
     }
 
-    public Integer getResultado(Pauta pauta) {
-        return Math.toIntExact(sessaoRepository.findByPauta(pauta).get().getVotos().stream().count());
+    public Map<MensagemVoto, Long> result(Pauta pauta) {
+        return getSessaoVotacao(pauta).map(sv -> sv.getVotos()
+                .stream()
+                .collect(Collectors.groupingBy(Voto::getMensagemVoto,
+                        Collectors.counting()))).orElse(null);
     }
 
     public void delete(Integer id) {
