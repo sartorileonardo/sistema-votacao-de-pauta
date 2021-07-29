@@ -16,10 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -99,8 +96,12 @@ public class PautaService {
         votoRepository.save(voto);
     }
 
-    public Integer resultado(Pauta pauta) {
-        return 5;
+    public Map<String, Integer> resultado(Pauta pauta) {
+        Map<String, Integer> result = new HashMap<>();
+        result.put("SIM", 2);
+        result.put("NAO", 1);
+
+        return result;
         /*
         return getSessaoVotacao(pauta).map(sv -> sv.getVotos()
                 .stream()
