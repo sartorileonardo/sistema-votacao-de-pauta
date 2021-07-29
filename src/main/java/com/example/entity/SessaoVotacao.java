@@ -11,6 +11,8 @@ import java.util.List;
 @Data
 @Entity
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode
 @ToString(exclude = {"pauta"})
 @Table(name = "sessao_votacao")
