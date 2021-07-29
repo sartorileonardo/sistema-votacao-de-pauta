@@ -86,7 +86,7 @@ public class PautaService {
         if (LocalDateTime.now().isAfter(sessaoVotacao.getDataFechamento())) {
             throw new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_FECHADA, HttpStatus.BAD_REQUEST);
         }
-        
+
          */
 
         voto.setSessaoVotacao(sessaoVotacao);
