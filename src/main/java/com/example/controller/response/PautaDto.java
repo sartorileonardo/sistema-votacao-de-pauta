@@ -16,5 +16,5 @@ public class PautaDto {
 
     private String nome;
 
-    private Map<MensagemVoto, Long> resultado;
+    private Integer resultado;
 }

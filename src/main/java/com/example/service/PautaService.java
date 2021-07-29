@@ -99,11 +99,15 @@ public class PautaService {
         votoRepository.save(voto);
     }
 
-    public Map<MensagemVoto, Long> resultado(Pauta pauta) {
+    public Integer resultado(Pauta pauta) {
+        return 5;
+        /*
         return getSessaoVotacao(pauta).map(sv -> sv.getVotos()
                 .stream()
                 .collect(Collectors.groupingBy(Voto::getMensagemVoto,
                         Collectors.counting()))).orElse(null);
+
+         */
     }
 
     public void delete(Integer id) {
