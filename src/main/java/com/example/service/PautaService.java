@@ -94,7 +94,7 @@ public class PautaService {
     }
 
     public Integer getResultado(Pauta pauta) {
-        return Math.toIntExact(getSessaoVotacao(pauta).get().getPauta().getVotos().stream().count());
+        return Math.toIntExact(sessaoRepository.findByPauta(pauta).get().getVotos().stream().count());
     }
 
     public void delete(Integer id) {
