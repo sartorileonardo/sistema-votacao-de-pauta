@@ -34,13 +34,7 @@ public class SessaoVotacao implements Serializable {
     @JoinColumn(name = "id_pauta")
     private Pauta pauta;
 
-    public SessaoVotacao() {
-    }
+    @OneToMany(mappedBy = "sessaoVotacao")
+    private List<Voto> votos;
 
-    public SessaoVotacao(Integer id, LocalDateTime dataAbertura, LocalDateTime dataFechamento, Pauta pauta) {
-        this.id = id;
-        this.dataAbertura = dataAbertura;
-        this.dataFechamento = dataFechamento;
-        this.pauta = pauta;
-    }
 }

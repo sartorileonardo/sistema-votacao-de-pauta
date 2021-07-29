@@ -1,7 +1,6 @@
 package com.example.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +8,9 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(exclude = "sessaoVotacao")
 @Entity
 @Table(name = "voto")
 public class Voto implements Serializable {
@@ -26,14 +28,4 @@ public class Voto implements Serializable {
     @JoinColumn(name = "id_sessao_votacao")
     private SessaoVotacao sessaoVotacao;
 
-
-    public Voto() {
-    }
-
-    public Voto(String cpfEleitor, MensagemVoto mensagemVoto, LocalDateTime dataHora, SessaoVotacao sessaoVotacao) {
-        this.cpfEleitor = cpfEleitor;
-        this.mensagemVoto = mensagemVoto;
-        this.dataHora = dataHora;
-        this.sessaoVotacao = sessaoVotacao;
-    }
 }

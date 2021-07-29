@@ -9,10 +9,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-@Entity
 @Builder
 @EqualsAndHashCode
-@Table(name = "pautas")
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "pauta")
 public class Pauta implements Serializable{
     @ApiModelProperty(value = "Identificador unico da pauta")
     @Id
@@ -21,17 +23,4 @@ public class Pauta implements Serializable{
 
     @ApiModelProperty(value = "Nome da pauta")
     private String nome;
-
-    @ApiModelProperty(value = "Lista de votos da pauta")
-    @OneToMany(targetEntity = Voto.class)
-    private List<Voto> votos;
-
-    public Pauta(Integer id, String nome, List<Voto> votos) {
-        this.id = id;
-        this.nome = nome;
-        this.votos = votos;
-    }
-
-    public Pauta() {
-    }
 }
