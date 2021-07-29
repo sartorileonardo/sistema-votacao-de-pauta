@@ -10,7 +10,7 @@ import java.util.Map;
 @Data
 @EqualsAndHashCode
 @ToString
-public class PautaDto {
+public class PautaResponseDto {
 
     private String id;
 

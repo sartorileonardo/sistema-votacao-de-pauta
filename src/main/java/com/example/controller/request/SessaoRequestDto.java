@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode
-public class SessaoDto {
+public class SessaoRequestDto {
 
-    @ApiModelProperty(example = "2019-01-08T22:34:22.337Z")
+    @ApiModelProperty(value = "Data/Hora de fechamento de votação", example = "2021-07-07T18:20:21.223Z")
     private LocalDateTime dataFechamento;
 }
