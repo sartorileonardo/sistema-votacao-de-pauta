@@ -97,8 +97,8 @@ public class PautaService {
     public Map<String, Long> resultado(Pauta pauta) {
 
         Map<String, Long> result = new HashMap<>();
-        result.put("SIM", getSessaoVotacao(pauta).get().getVotos().stream().filter(v -> v != null).count());
-        result.put("NAO", getSessaoVotacao(pauta).get().getVotos().stream().filter(v -> v != null).count());
+        result.put("SIM", getSessaoVotacao(pauta).get().getVotos().stream().filter(v -> v.getMensagemVoto().toString().equalsIgnoreCase("SIM")).count());
+        result.put("NAO", getSessaoVotacao(pauta).get().getVotos().stream().filter(v -> v.getMensagemVoto().toString().equalsIgnoreCase("NAO")).count());
 
         return result;
         /*
