@@ -29,7 +29,7 @@ public class Voto implements Serializable {
     private LocalDateTime dataHora;
 
     @ManyToOne
-    @JoinColumn(name = "sessaoVotacao")
+    @JoinColumn(name = "id_sessao_votacao")
     private SessaoVotacao sessaoVotacao;
 
 }

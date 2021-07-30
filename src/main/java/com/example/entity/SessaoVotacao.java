@@ -34,7 +34,7 @@ public class SessaoVotacao implements Serializable {
     @JoinColumn(name = "id_pauta")
     private Pauta pauta;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sessaoVotacao", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sessaoVotacao")
     private List<Voto> votos;
 
 }
