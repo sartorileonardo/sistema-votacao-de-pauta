@@ -19,7 +19,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class PautaControllerTest {
+public class PautaControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @Mock
@@ -42,11 +42,32 @@ public class PautaControllerTest {
     @Test
     public void addPauta() throws Exception {
         String json = "{\n" +
-                "  \"nome\": \"pautaC\"\n" +
+                "  \"nome\": \"pautaA\"\n" +
                 "}";
         mockMvc.perform(MockMvcRequestBuilders.post("/v1/pauta/").contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
     }
+
+    @Test
+    public void iniciarVotacaoSessao() throws Exception {
+        String json = "{\n" +
+                "  \"nome\": \"2021-07-30T22:34:22.337Z\"\n" +
+                "}";
+        mockMvc.perform(MockMvcRequestBuilders.post("v1/pauta/1/iniciar-sessao-votacao").contentType(MediaType.APPLICATION_JSON).content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void votarPauta() throws Exception {
+        String json = "{\n" +
+                "  \"cpfEleitor\": \"122155\"\n" +
+                "  \"mensagemVoto\": \"SIM\"\n" +
+                "}";
+        mockMvc.perform(MockMvcRequestBuilders.post("v1/pauta/1/votar").contentType(MediaType.APPLICATION_JSON).content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+
 
     @Test
     public void getPauta() throws Exception {
