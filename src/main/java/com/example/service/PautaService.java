@@ -114,7 +114,7 @@ public class PautaService {
         pautaRepository.deleteById(id);
     }
 
-    public List<Voto> getVotosPorPauta(Integer idPauta) {
-        return votoRepository.findAll();
+    public Collection<Voto> getVotosPorPauta(Integer idPauta) {
+        return sessaoRepository.findByPauta(pautaRepository.findById(idPauta).get()).get().getVotos();
     }
 }

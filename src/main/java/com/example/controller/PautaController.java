@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,7 +49,7 @@ public class PautaController {
     }
 
     @GetMapping("/{idPauta}/votos")
-    public List<Voto> getVotosDaPauta(@PathVariable("idPauta") Integer idPauta) {
+    public Collection<Voto> getVotosDaPauta(@PathVariable("idPauta") Integer idPauta) {
         logger.info("Consultando votos da pauta...");
 
         return pautaService.getVotosPorPauta(idPauta);
