@@ -1,4 +1,4 @@
-package com.example.controller.request;
+package com.votacao.controller.request;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

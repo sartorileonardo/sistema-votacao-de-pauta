@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.votacao.exception;
 
 import org.springframework.http.HttpStatus;
 

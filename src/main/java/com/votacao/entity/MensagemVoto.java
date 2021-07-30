@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.votacao.entity;
 
 public enum MensagemVoto {
     SIM,

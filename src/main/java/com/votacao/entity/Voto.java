@@ -1,6 +1,5 @@
-package com.example.entity;
+package com.votacao.entity;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.*;

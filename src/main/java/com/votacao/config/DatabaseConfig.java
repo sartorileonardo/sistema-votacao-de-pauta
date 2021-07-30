@@ -1,4 +1,4 @@
-package com.example.config;
+package com.votacao.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

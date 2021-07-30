@@ -1,14 +1,14 @@
-package com.example.controller;
+package com.votacao.controller;
 
-import com.example.controller.request.PautaRequestDto;
-import com.example.controller.request.SessaoRequestDto;
-import com.example.controller.request.VotoRequestDto;
-import com.example.controller.response.PautaResponseDto;
-import com.example.entity.Pauta;
-import com.example.entity.Voto;
-import com.example.exception.RegraDeNegocioException;
-import com.example.exception.TipoMensagemRegraDeNegocioException;
-import com.example.service.PautaService;
+import com.votacao.controller.request.PautaRequestDto;
+import com.votacao.controller.request.SessaoRequestDto;
+import com.votacao.controller.request.VotoRequestDto;
+import com.votacao.controller.response.PautaResponseDto;
+import com.votacao.entity.Pauta;
+import com.votacao.entity.Voto;
+import com.votacao.exception.RegraDeNegocioException;
+import com.votacao.exception.TipoMensagemRegraDeNegocioException;
+import com.votacao.service.PautaService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

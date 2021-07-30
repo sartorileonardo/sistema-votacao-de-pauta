@@ -62,7 +62,7 @@ The application does not have any custom logic by default -- it's just an empty 
 
 ```java
 :::>> file.write src/main/java/com/example/demo/DemoApplication.java
-package com.example.demo;
+package com.votacao.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -195,7 +195,7 @@ Then you can then add a configuration bean to your app.
 
 ```java
 :::>> file.write src/main/java/demo/DatabaseConfig.java
-package com.example.demo;
+package com.votacao.demo;
 
 import com.zaxxer.hikari.*;
 import org.springframework.beans.factory.annotation.Value;

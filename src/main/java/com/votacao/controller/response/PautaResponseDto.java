@@ -1,6 +1,5 @@
-package com.example.controller.response;
+package com.votacao.controller.response;
 
-import com.example.entity.MensagemVoto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

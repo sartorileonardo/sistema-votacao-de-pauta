@@ -1,4 +1,4 @@
-package com.example.exception;
+package com.votacao.exception;
 
 public enum TipoMensagemRegraDeNegocioException {
     SESSAO_FECHADA{

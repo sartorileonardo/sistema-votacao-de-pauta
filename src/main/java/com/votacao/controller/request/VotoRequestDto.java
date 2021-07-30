@@ -1,6 +1,6 @@
-package com.example.controller.request;
+package com.votacao.controller.request;
 
-import com.example.entity.MensagemVoto;
+import com.votacao.entity.MensagemVoto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -1,13 +1,13 @@
-package com.example.service;
+package com.votacao.service;
 
-import com.example.entity.Pauta;
-import com.example.entity.SessaoVotacao;
-import com.example.entity.Voto;
-import com.example.exception.RegraDeNegocioException;
-import com.example.exception.TipoMensagemRegraDeNegocioException;
-import com.example.repository.PautaRepository;
-import com.example.repository.SessaoRepository;
-import com.example.repository.VotoRepository;
+import com.votacao.entity.Pauta;
+import com.votacao.entity.SessaoVotacao;
+import com.votacao.entity.Voto;
+import com.votacao.exception.RegraDeNegocioException;
+import com.votacao.exception.TipoMensagemRegraDeNegocioException;
+import com.votacao.repository.PautaRepository;
+import com.votacao.repository.SessaoRepository;
+import com.votacao.repository.VotoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
