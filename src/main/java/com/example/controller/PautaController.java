@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,13 +45,6 @@ public class PautaController {
         logger.info("Consultando pauta...");
 
         return getPautaResponse(pautaService.getPauta(idPauta).orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)));
-    }
-
-    @GetMapping("/{idPauta}/votos")
-    public Collection<Voto> getVotosDaPauta(@PathVariable("idPauta") Integer idPauta) {
-        logger.info("Consultando votos da pauta...");
-
-        return pautaService.getVotosPorPauta(idPauta);
     }
 
     @PostMapping
@@ -83,6 +75,14 @@ public class PautaController {
         pautaService.votar(idPauta, objectMapper.convertValue(voto, Voto.class));
         logger.info("Voto registrado com sucesso!");
 
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{idPauta}")
+    public ResponseEntity removerPauta(@PathVariable("idPauta") Integer idPauta) {
+        logger.info("Removendo pauta...");
+        pautaService.delete(idPauta);
+        logger.info("Pauta removida com sucesso!");
         return ResponseEntity.ok().build();
     }
 

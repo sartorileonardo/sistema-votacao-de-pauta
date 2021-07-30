@@ -101,20 +101,10 @@ public class PautaService {
         result.put("NAO", getSessaoVotacao(pauta).get().getVotos().stream().filter(v -> v.getMensagemVoto().toString().equalsIgnoreCase("NAO")).count());
 
         return result;
-        /*
-        return getSessaoVotacao(pauta).map(sv -> sv.getVotos()
-                .stream()
-                .collect(Collectors.groupingBy(Voto::getMensagemVoto,
-                        Collectors.counting()))).orElse(null);
-
-         */
     }
 
     public void delete(Integer id) {
         pautaRepository.deleteById(id);
     }
 
-    public Collection<Voto> getVotosPorPauta(Integer idPauta) {
-        return sessaoRepository.findByPauta(pautaRepository.findById(idPauta).get()).get().getVotos();
-    }
 }
