@@ -1,7 +1,5 @@
 package com.example.service;
 
-import com.example.controller.response.VotoResponseDto;
-import com.example.entity.MensagemVoto;
 import com.example.entity.Pauta;
 import com.example.entity.SessaoVotacao;
 import com.example.entity.Voto;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -117,7 +114,7 @@ public class PautaService {
         pautaRepository.deleteById(id);
     }
 
-    public Collection<Voto> getVotosPorPauta(Integer idPauta) {
+    public List<Voto> getVotosPorPauta(Integer idPauta) {
         return votoRepository.findAll();
     }
 }

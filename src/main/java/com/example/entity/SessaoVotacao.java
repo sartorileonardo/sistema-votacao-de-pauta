@@ -35,6 +35,6 @@ public class SessaoVotacao implements Serializable {
     private Pauta pauta;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "sessaoVotacao", cascade = CascadeType.ALL)
-    private Collection<Voto> votos = new LinkedHashSet<Voto>();
+    private List<Voto> votos;
 
 }
