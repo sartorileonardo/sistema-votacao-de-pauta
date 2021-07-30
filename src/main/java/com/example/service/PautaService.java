@@ -118,7 +118,6 @@ public class PautaService {
     }
 
     public Collection<Voto> getVotosPorPauta(Integer idPauta) {
-        Pauta p = pautaRepository.findById(idPauta).get();
-        return sessaoRepository.findByPauta(p).get().getVotos();
+        return votoRepository.findAll();
     }
 }
