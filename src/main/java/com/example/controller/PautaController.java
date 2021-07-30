@@ -4,6 +4,7 @@ import com.example.controller.request.PautaRequestDto;
 import com.example.controller.request.SessaoRequestDto;
 import com.example.controller.request.VotoRequestDto;
 import com.example.controller.response.PautaResponseDto;
+import com.example.controller.response.VotoResponseDto;
 import com.example.entity.Pauta;
 import com.example.entity.Voto;
 import com.example.exception.RegraDeNegocioException;
@@ -18,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +47,13 @@ public class PautaController {
         logger.info("Consultando pauta...");
 
         return getPautaResponse(pautaService.getPauta(idPauta).orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)));
+    }
+
+    @GetMapping("/{idPauta}/votos")
+    public Collection<Voto> getVotosDaPauta(@PathVariable("idPauta") Integer idPauta) {
+        logger.info("Consultando votos da pauta...");
+
+        return pautaService.getVotosPorPauta(idPauta);
     }
 
     @PostMapping

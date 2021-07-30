@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.controller.response.VotoResponseDto;
 import com.example.entity.MensagemVoto;
 import com.example.entity.Pauta;
 import com.example.entity.SessaoVotacao;
@@ -116,7 +117,8 @@ public class PautaService {
         pautaRepository.deleteById(id);
     }
 
-    public Integer getTempoSessaoPadrao() {
-        return this.tempoSessaoPadrao;
+    public Collection<Voto> getVotosPorPauta(Integer idPauta) {
+        Pauta p = pautaRepository.findById(idPauta).get();
+        return sessaoRepository.findByPauta(p).get().getVotos();
     }
 }
