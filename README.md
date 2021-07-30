@@ -1,14 +1,19 @@
 # sistema-votacao-de-pauta
 
-A barebones Java app, which can easily be deployed to Heroku.
+O sistema permite: cadastrar uma nova pauta, iniciar uma nova sessão, votar e consultar o resultado da votação.
 
-This application supports the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
+## Tecnologias
+Para construção do sistema foram utilizadas as tecnologias:
+- Java 8;
+- Spring Boot Framework;
+- Heroku Cloud;
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+## Licença de software
+Como este projeto é dedicado a estudos e não é um projeto com objetivo comercial, não há cobrança, direitos ou restrições em seu uso. (MIT License).
 
 ## Running Locally
 
-Make sure you have Java and Maven installed.  Also, install the [Heroku CLI](https://cli.heroku.com/).
+Com Java 8, Maven e Heroku CLI instalado, siga as instruções:[Heroku CLI](https://cli.heroku.com/).
 
 ```sh
 $ git clone https://github.com/heroku/sistema-votacao-de-pauta.git
@@ -17,15 +22,15 @@ $ mvn install
 $ heroku local:start
 ```
 
-Your app should now be running on [localhost:5000](http://localhost:5000/).
+Seu app heroku será executado localmente em [localhost:5000](http://localhost:5000/).
 
-If you're going to use a database, ensure you have a local `.env` file that reads something like this:
+Se deseja seguir com banco de dados, use `.env` arquivo de configuração:
 
 ```
 JDBC_DATABASE_URL=jdbc:postgresql://localhost:5432/java_database_name
 ```
 
-## Deploying to Heroku
+## Fazendo deploy no Heroku
 
 ```sh
 $ heroku create
@@ -33,8 +38,8 @@ $ git push heroku main
 $ heroku open
 ```
 
-## Documentation
+## Documentação de API
 
-For more information about using Java on Heroku, see these Dev Center articles:
+A documentação de API com os padrões de comunicação está disponível em:
 
-- [Java on Heroku](https://devcenter.heroku.com/categories/java)
+- [Swagger Documentation API](https://sistema-votacao-de-pauta.herokuapp.com/swagger-ui.html#/pauta-controller)

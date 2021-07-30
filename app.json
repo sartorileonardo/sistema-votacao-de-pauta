@@ -1,5 +1,5 @@
 {
-  "name": "Start on Heroku: Java",
-  "description": "A barebones Java app, which can easily be deployed to Heroku.",
+  "name": "Sistema de votação em cloud (Heroku): Java 8 com Spring Boot e banco de dados Postgres",
+  "description": "O sistema permite: cadastrar uma nova pauta, iniciar uma nova sessão, votar e consultar o resultado da votação",
   "addons": [ "heroku-postgresql" ]
 }
