@@ -76,10 +76,12 @@ public class PautaService {
         SessaoVotacao sessaoVotacao = getSessaoVotacao(getPauta(idPauta)
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)))
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_NAO_ENCONTRADA, HttpStatus.NOT_FOUND));
-
+/*
         if (LocalDateTime.now().isAfter(sessaoVotacao.getDataFechamento())) {
             throw new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_FECHADA, HttpStatus.BAD_REQUEST);
         }
+        
+ */
 
         voto.setSessaoVotacao(sessaoVotacao);
         voto.setDataHora(LocalDateTime.now());
