@@ -2,6 +2,13 @@
 
 O sistema permite: cadastrar uma nova pauta, iniciar uma nova sessão, votar e consultar o resultado da votação.
 
+## Regras de Negócio
+Ao utilizar API, deve-se usar a ordem lógica de operações:
+- Criar uma pauta;
+- Abrir a sessão de votação;
+- Realizar as votações dentro do tempo padrão de um minuto;
+- Listas as pautas com seus resultados;
+
 ## Tecnologias
 Para construção do sistema foram utilizadas as tecnologias:
 - Java 8;
