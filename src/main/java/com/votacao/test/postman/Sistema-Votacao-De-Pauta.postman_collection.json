@@ -1,0 +1,217 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Sistema-Votacao-De-Pauta",
+		"_postman_id": "e2d18706-57ec-7738-f6da-4bb68e1fa4b3",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET ALL PAUTA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests[\"Status equals 200\"] = responseJSON.status === 200;",
+							"}",
+							"catch (e) { }",
+							"tests[\"Body contains status\"] = responseBody.has(\"status\");",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sistema-votacao-de-pauta.herokuapp.com/v1/pauta/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"pauta1\",\n\t\"votos\": [\n\t\t{\n\t\t\t\"cpf\": 123,\n\t\t\t\"mensagemVoto\": \"SIM\"\n\t\t},\n\t\t{\n\t\t\t\"cpf\": 456,\n\t\t\t\"mensagemVoto\": \"SIM\"\n\t\t},\n\t\t{\n\t\t\t\"cpf\": 789,\n\t\t\t\"mensagemVoto\": \"NAO\"\n\t\t}\n\t\t\n\t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET BY ID",
+			"request": {
+				"url": "https://sistema-votacao-de-pauta.herokuapp.com/v1/pauta/6/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"pauta1\",\n\t\"votos\": [\n\t\t{\n\t\t\t\"cpf\": 123,\n\t\t\t\"mensagemVoto\": \"SIM\"\n\t\t},\n\t\t{\n\t\t\t\"cpf\": 456,\n\t\t\t\"mensagemVoto\": \"SIM\"\n\t\t},\n\t\t{\n\t\t\t\"cpf\": 789,\n\t\t\t\"mensagemVoto\": \"NAO\"\n\t\t}\n\t\t\n\t]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ADD PAUTA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests[\"Status equals 201\"] = responseJSON.status === 201;",
+							"}",
+							"catch (e) { }",
+							"tests[\"Body contains status\"] = responseBody.has(\"status\");",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sistema-votacao-de-pauta.herokuapp.com/v1/pauta/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n\t  \"nome\": \"pautaB\"\n\t}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "INICIAR VOTACAO PAUTA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests[\"Status equals 200\"] = responseJSON.status === 200;",
+							"}",
+							"catch (e) { }",
+							"tests[\"Body contains status\"] = responseBody.has(\"status\");",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sistema-votacao-de-pauta.herokuapp.com/v1/pauta/1/iniciar-sessao-votacao",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "VOTAR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests[\"Status equals 200\"] = responseJSON.status === 200;",
+							"}",
+							"catch (e) { }",
+							"tests[\"Body contains status\"] = responseBody.has(\"status\");",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sistema-votacao-de-pauta.herokuapp.com/v1/pauta/1/votar",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"cpfEleitor\": \"1152\",\n  \"mensagemVoto\": \"NAO\"\n}\t"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

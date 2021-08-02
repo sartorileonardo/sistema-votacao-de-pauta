@@ -42,7 +42,7 @@ public class PautaControllerIntegrationTest {
     @Test
     public void addPauta() throws Exception {
         String json = "{\n" +
-                "  \"nome\": \"pautaA\"\n" +
+                "  \"nome\": \"pautaC\"\n" +
                 "}";
         mockMvc.perform(MockMvcRequestBuilders.post("/v1/pauta/").contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
@@ -50,10 +50,7 @@ public class PautaControllerIntegrationTest {
 
     @Test
     public void iniciarVotacaoSessao() throws Exception {
-        String json = "{\n" +
-                "  \"nome\": \"2021-07-30T22:34:22.337Z\"\n" +
-                "}";
-        mockMvc.perform(MockMvcRequestBuilders.post("v1/pauta/1/iniciar-sessao-votacao").contentType(MediaType.APPLICATION_JSON).content(json))
+        mockMvc.perform(MockMvcRequestBuilders.post("v1/pauta/1/iniciar-sessao-votacao").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
