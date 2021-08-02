@@ -77,7 +77,7 @@ public class PautaController {
 
         return ResponseEntity.ok().build();
     }
-    
+
 
     private PautaResponseDto getPautaResponse(Pauta pauta) {
         PautaResponseDto pautaResponse = objectMapper.convertValue(pauta, PautaResponseDto.class);

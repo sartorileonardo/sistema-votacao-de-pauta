@@ -76,7 +76,9 @@ public class PautaService {
         SessaoVotacao sessaoVotacao = getSessaoVotacao(getPauta(idPauta)
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)))
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_NAO_ENCONTRADA, HttpStatus.NOT_FOUND));
-/*
+
+        //TODO: descomentar para pegar tempo default do aplication.properties
+        /*
         if (LocalDateTime.now().isAfter(sessaoVotacao.getDataFechamento())) {
             throw new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_FECHADA, HttpStatus.BAD_REQUEST);
         }
@@ -95,9 +97,11 @@ public class PautaService {
 
     public Map<String, Long> resultado(Pauta pauta) {
 
+        Collection<Voto> votos = getSessaoVotacao(pauta).get().getVotos();
+
         Map<String, Long> result = new HashMap<>();
-        result.put("SIM", getSessaoVotacao(pauta).get().getVotos().stream().filter(v -> v.getMensagemVoto().toString().equalsIgnoreCase("SIM")).count());
-        result.put("NAO", getSessaoVotacao(pauta).get().getVotos().stream().filter(v -> v.getMensagemVoto().toString().equalsIgnoreCase("NAO")).count());
+        result.put("SIM", votos.stream().filter(v -> v.getMensagemVoto().toString().equalsIgnoreCase("SIM")).count());
+        result.put("NAO", votos.stream().filter(v -> v.getMensagemVoto().toString().equalsIgnoreCase("NAO")).count());
 
         return result;
     }
