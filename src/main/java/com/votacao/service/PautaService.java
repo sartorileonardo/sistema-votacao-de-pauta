@@ -102,8 +102,5 @@ public class PautaService {
         return result;
     }
 
-    public void delete(Integer idPauta) {
-        sessaoRepository.deleteById(getSessaoVotacao(getPauta(idPauta).get()).get().getId());
-    }
 
 }
