@@ -1,11 +1,13 @@
 package com.votacao.controller.request;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 
+@Builder(toBuilder = true)
 @Data
 @EqualsAndHashCode
 public class SessaoRequestDto {

@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -61,10 +62,9 @@ public class PautaController {
 
 
     @PostMapping("/{idPauta}/iniciar-sessao-votacao")
-    public ResponseEntity iniciarSessaoVotacao(@PathVariable("idPauta") Integer idPauta,
-                                               @RequestBody SessaoRequestDto sessao) {
+    public ResponseEntity iniciarSessaoVotacao(@PathVariable("idPauta") Integer idPauta) {
         logger.info("Iniciando sessão de votação...", idPauta);
-        pautaService.iniciarSessaoVotacao(idPauta, sessao != null ? sessao.getDataFechamento() : null);
+        pautaService.iniciarSessaoVotacao(idPauta, LocalDateTime.now().plusSeconds(pautaService.getTempoSessaoPadrao()));
         logger.info("Sessão de votação iniciada com sucesso!");
 
         return ResponseEntity.ok().build();
