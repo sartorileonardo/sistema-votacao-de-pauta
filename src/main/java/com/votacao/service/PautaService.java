@@ -80,7 +80,7 @@ public class PautaService {
         if (LocalDateTime.now().isAfter(sessaoVotacao.getDataFechamento())) {
             throw new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_FECHADA, HttpStatus.BAD_REQUEST);
         }
-        
+
  */
 
         voto.setSessaoVotacao(sessaoVotacao);
@@ -102,8 +102,8 @@ public class PautaService {
         return result;
     }
 
-    public void delete(Integer id) {
-        pautaRepository.deleteById(id);
+    public void delete(Integer idPauta) {
+        sessaoRepository.deleteById(getSessaoVotacao(getPauta(idPauta).get()).get().getId());
     }
 
 }
