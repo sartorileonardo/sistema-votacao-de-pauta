@@ -1,9 +1,8 @@
-package com.votacao.controller;
+package com.votacao.resource;
 
-import com.votacao.controller.request.PautaRequestDto;
-import com.votacao.controller.request.SessaoRequestDto;
-import com.votacao.controller.request.VotoRequestDto;
-import com.votacao.controller.response.PautaResponseDto;
+import com.votacao.resource.request.PautaRequestDto;
+import com.votacao.resource.request.VotoRequestDto;
+import com.votacao.resource.response.PautaResponseDto;
 import com.votacao.entity.Pauta;
 import com.votacao.entity.Voto;
 import com.votacao.exception.RegraDeNegocioException;
@@ -25,9 +24,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/v1/pauta")
 @RequiredArgsConstructor
-public class PautaController {
+public class PautaResource {
 
-    private static final Logger logger = LoggerFactory.getLogger(PautaController.class);
+    private static final Logger logger = LoggerFactory.getLogger(PautaResource.class);
 
     private final PautaService pautaService;
     private final ObjectMapper objectMapper;

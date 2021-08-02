@@ -1,4 +1,4 @@
-package com.votacao.controller.response;
+package com.votacao.resource.response;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

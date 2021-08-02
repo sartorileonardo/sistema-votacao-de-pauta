@@ -1,4 +1,4 @@
-package com.votacao.controller.request;
+package com.votacao.resource.request;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

@@ -50,3 +50,7 @@ $ heroku open
 A documentação de API com os padrões de comunicação está disponível em:
 
 - [Swagger Documentation API](https://sistema-votacao-de-pauta.herokuapp.com/swagger-ui.html#/pauta-controller)
+
+## Postman collection test
+
+Caminho: src/main/java/com/votacao/test/postman/Sistema-Votacao-De-Pauta.postman_collection.json

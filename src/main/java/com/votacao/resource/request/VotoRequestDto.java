@@ -1,4 +1,4 @@
-package com.votacao.controller.request;
+package com.votacao.resource.request;
 
 import com.votacao.entity.MensagemVoto;
 import io.swagger.annotations.ApiModelProperty;

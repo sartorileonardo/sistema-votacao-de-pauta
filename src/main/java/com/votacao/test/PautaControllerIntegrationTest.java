@@ -1,15 +1,12 @@
 package com.votacao.test;
 
-import static org.mockito.Mockito.when;
-
-import com.votacao.controller.PautaController;
+import com.votacao.resource.PautaResource;
 import com.votacao.service.PautaService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,7 +23,7 @@ public class PautaControllerIntegrationTest {
     private PautaService service;
 
     @InjectMocks
-    private PautaController controller;
+    private PautaResource controller;
 
     @Before
     public void setup() {
