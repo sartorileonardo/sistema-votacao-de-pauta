@@ -77,13 +77,9 @@ public class PautaService {
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)))
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_NAO_ENCONTRADA, HttpStatus.NOT_FOUND));
 
-        //TODO: descomentar para pegar tempo default do aplication.properties
-        /*
         if (LocalDateTime.now().isAfter(sessaoVotacao.getDataFechamento())) {
             throw new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_FECHADA, HttpStatus.BAD_REQUEST);
         }
-
- */
 
         voto.setSessaoVotacao(sessaoVotacao);
         voto.setDataHora(LocalDateTime.now());
