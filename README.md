@@ -9,6 +9,12 @@ Ao utilizar API, deve-se usar a ordem lógica de operações:
 - Realizar as votações dentro do tempo padrão de um minuto;
 - Listas as pautas com seus resultados;
 
+## Documentação de API disponível no Heroku
+
+A documentação de API com os padrões de comunicação está disponível em:
+
+- [Swagger Documentation API](https://sistema-votacao-de-pauta.herokuapp.com/swagger-ui.html#/pauta-controller)
+
 ## Tecnologias
 Para construção do sistema foram utilizadas as tecnologias:
 - Java 8;
@@ -45,11 +51,6 @@ $ git push heroku main
 $ heroku open
 ```
 
-## Documentação de API
-
-A documentação de API com os padrões de comunicação está disponível em:
-
-- [Swagger Documentation API](https://sistema-votacao-de-pauta.herokuapp.com/swagger-ui.html#/pauta-controller)
 
 ## Postman collection test
 

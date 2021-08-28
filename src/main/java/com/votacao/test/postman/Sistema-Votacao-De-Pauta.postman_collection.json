@@ -53,7 +53,7 @@
 			"response": []
 		},
 		{
-			"name": "GET BY ID",
+			"name": "GET BY COM RESULTADO POR ID",
 			"request": {
 				"url": "https://sistema-votacao-de-pauta.herokuapp.com/v1/pauta/6/",
 				"method": "GET",
