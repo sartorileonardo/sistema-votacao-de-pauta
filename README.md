@@ -54,4 +54,4 @@ $ heroku open
 
 ## Postman collection test
 
-Caminho: src/main/java/com/votacao/test/postman/Sistema-Votacao-De-Pauta.postman_collection.json
+Caminho: /postman/postman_collection_to_test_requests.json
