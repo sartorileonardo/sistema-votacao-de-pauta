@@ -29,18 +29,11 @@ public class PautaResource {
     private final ObjectMapper objectMapper;
 
     @GetMapping
-    public List<PautaResponseDto> getPautas() {
+    public List<PautaResponseDto> getPautasComResultado() {
         logger.info("Consultando pautas...");
         return pautaService.getPautas().stream()
                 .map(this::getPautaResponse)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/{idPauta}")
-    public PautaResponseDto getPauta(@PathVariable("idPauta") Integer idPauta) {
-        logger.info("Consultando pauta...");
-
-        return getPautaResponse(pautaService.getPautaById(idPauta));
     }
 
     @PostMapping
