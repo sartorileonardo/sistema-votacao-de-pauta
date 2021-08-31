@@ -43,7 +43,16 @@ public class PautaService {
         return pautaRepository.findAll();
     }
 
-    public Optional<Pauta> getPauta(Integer id) {
+    public Pauta getPautaById(Integer id) {
+        Optional<Pauta> pautaOptional = getPautaOptional(id);
+        if(!pautaOptional.isPresent()){
+            new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND);
+        }
+        Pauta pauta = pautaOptional.get();
+        return pauta;
+    }
+
+    public Optional<Pauta> getPautaOptional(Integer id) {
         return pautaRepository.findById(id);
     }
 
@@ -53,7 +62,7 @@ public class PautaService {
 
     @Transactional
     public void votar(Integer idPauta, Voto voto) {
-        SessaoVotacao sessaoVotacao = getSessaoVotacao(getPauta(idPauta)
+        SessaoVotacao sessaoVotacao = getSessaoVotacao(getPautaOptional(idPauta)
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)))
                 .orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.SESSAO_NAO_ENCONTRADA, HttpStatus.NOT_FOUND));
 

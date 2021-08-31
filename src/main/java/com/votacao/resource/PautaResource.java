@@ -10,12 +10,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Cacheable;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +40,7 @@ public class PautaResource {
     public PautaResponseDto getPauta(@PathVariable("idPauta") Integer idPauta) {
         logger.info("Consultando pauta...");
 
-        return getPautaResponse(pautaService.getPauta(idPauta).orElseThrow(() -> new RegraDeNegocioException(TipoMensagemRegraDeNegocioException.PAUTA_NAO_ENCONTRADA, HttpStatus.NOT_FOUND)));
+        return getPautaResponse(pautaService.getPautaById(idPauta));
     }
 
     @PostMapping
